@@ -109,7 +109,9 @@ async def receive_event(payload: dict, webhook_id: int, webhook_token: str, requ
         cache[id] = obj
         webhook = discord.Webhook.partial(webhook_id, webhook_token, session=app.session)
         async with obj.lock:
-            cache[id].message = await webhook.send(username="GitHub Actions", embed=obj.embed, wait=True)
+            cache[id].message = await webhook.send(username="GitHub Actions",
+                                                   avatar_url="https://cdn.discordapp.com/attachments/527965708793937960/1086369291424776383/gh.png",
+                                                   embed=obj.embed, wait=True)
     else:
         assert isinstance(obj, WorkflowEmbed)
 
