@@ -1,0 +1,4 @@
+fastapi==0.94.1
+discord.py
+sentry_sdk
+cachetools
