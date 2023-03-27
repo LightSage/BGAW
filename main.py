@@ -76,8 +76,10 @@ class WorkflowEmbed:
                 self.embed.url = f"{payload['repository']['html_url']}/pulls/{payload['workflow_run']['pull_requests'][0]['id']}"
 
             self.embed.title = f"[{payload['repository']['name']}] Pull Request Workflows"
+            actor_pfp = payload['workflow_run']['triggering_actor'].get("avatar_url", None)
             self.embed.set_author(name=payload['workflow_run']['triggering_actor']['login'],
-                                  url=payload['workflow_run']['triggering_actor']['html_url'])
+                                  url=payload['workflow_run']['triggering_actor']['html_url'],
+                                  icon_url=actor_pfp)
 
         if self.message:
             async with self.lock:
